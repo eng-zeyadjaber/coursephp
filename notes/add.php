@@ -5,15 +5,20 @@ include "../9 - PDO Connect Database MYSQL.php";
 $title      = filterRequest("title");
 $content    = filterRequest("content");
 $userid     = filterRequest("id");
+$imagename  = imageUpload("file");
 
-$stmt = $connect->prepare("INSERT INTO `notes`( `notes_title`, `notes_content`, `notes_users`) VALUES (? , ? , ?)");
+if ($imagename != 'fail'){
+    $stmt = $connect->prepare("INSERT INTO `notes`( `notes_title`, `notes_content`, `notes_users` , `notes_image`) VALUES (? , ? , ? , ?)");
 
-$stmt->execute(array($title , $content , $userid));
+    $stmt->execute(array($title , $content , $userid , $imagename));
 
-$count = $stmt->rowCount();
+    $count = $stmt->rowCount();
 
-if ($count > 0){
-    echo json_encode(array("status" => "success"));
-} else {
+    if ($count > 0){
+        echo json_encode(array("status" => "success"));
+    } else {
+        echo json_encode(array("status" => "fail"));
+    }
+}else{
     echo json_encode(array("status" => "fail"));
 }

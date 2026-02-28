@@ -8,7 +8,7 @@ $option = array(
 try{
     $connect = new PDO($dsn , $team , $pass , $option);
     $connect -> setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-    include "15 - functions.php";
+    include "functions.php";
 }catch(PDOException $e){
     echo $e -> getMessage();
 }
