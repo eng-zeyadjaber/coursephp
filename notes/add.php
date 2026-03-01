@@ -5,6 +5,7 @@ include "../9 - PDO Connect Database MYSQL.php";
 $title      = filterRequest("title");
 $content    = filterRequest("content");
 $userid     = filterRequest("id");
+
 $imagename  = imageUpload("file");
 
 if ($imagename != 'fail'){
